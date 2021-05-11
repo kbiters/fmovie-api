@@ -1,7 +1,7 @@
-package com.kbiters.fmovie_api.service;
+package com.kbiters.fmovieapi.service;
 
-import com.kbiters.fmovie_api.model.ActorModel;
-import com.kbiters.fmovie_api.repository.ActorRepository;
+import com.kbiters.fmovieapi.model.ActorModel;
+import com.kbiters.fmovieapi.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

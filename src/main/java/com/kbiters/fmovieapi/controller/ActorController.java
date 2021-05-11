@@ -1,12 +1,11 @@
-package com.kbiters.fmovie_api.controller;
+package com.kbiters.fmovieapi.controller;
 
-import com.kbiters.fmovie_api.model.ActorModel;
-import com.kbiters.fmovie_api.service.ActorService;
+import com.kbiters.fmovieapi.model.ActorModel;
+import com.kbiters.fmovieapi.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @RestController
@@ -15,7 +14,6 @@ class ActorController {
 
     @Autowired
     ActorService actorService;
-
 
 
     @GetMapping()

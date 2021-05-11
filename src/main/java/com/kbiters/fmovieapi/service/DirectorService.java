@@ -1,8 +1,8 @@
-package com.kbiters.fmovie_api.service;
+package com.kbiters.fmovieapi.service;
 
 
-import com.kbiters.fmovie_api.model.DirectorModel;
-import com.kbiters.fmovie_api.repository.DirectorRepository;
+import com.kbiters.fmovieapi.model.DirectorModel;
+import com.kbiters.fmovieapi.repository.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

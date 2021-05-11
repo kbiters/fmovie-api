@@ -1,8 +1,8 @@
-package com.kbiters.fmovie_api.controller;
+package com.kbiters.fmovieapi.controller;
 
 
-import com.kbiters.fmovie_api.model.DirectorModel;
-import com.kbiters.fmovie_api.service.DirectorService;
+import com.kbiters.fmovieapi.model.DirectorModel;
+import com.kbiters.fmovieapi.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
