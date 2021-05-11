@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.kbiters</groupId>
-    <artifactId>fmovie_api</artifactId>
+    <artifactId>fmovieapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fmovie_api</name>
+    <name>fmovie-api</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
