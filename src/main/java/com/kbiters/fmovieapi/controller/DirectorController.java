@@ -1,6 +1,5 @@
 package com.kbiters.fmovieapi.controller;
 
-
 import com.kbiters.fmovieapi.model.DirectorModel;
 import com.kbiters.fmovieapi.service.DirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +21,20 @@ public class DirectorController {
     @PostMapping()
     public DirectorModel saveMovie(@RequestBody DirectorModel director) {
         return this.directorService.saveDirector(director);
+    }
+
+    @GetMapping("/{id}")
+    public DirectorModel getDirector(@PathVariable Long id){
+        return this.directorService.getDirector(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+    }
+
+    @PutMapping("/{id}")
+    public DirectorModel updateDirector(@RequestBody DirectorModel newDirector, @PathVariable Long id){
+        return this.directorService.updateDirector(newDirector, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public DirectorModel deleteDirector(@PathVariable Long id) {
+        return this.directorService.deleteDirector(id);
     }
 }

@@ -48,5 +48,6 @@ public class ActorModel {
 
     public void setMovies(Set<MovieModel> movies) {
         this.movies = movies;
+
     }
 }
