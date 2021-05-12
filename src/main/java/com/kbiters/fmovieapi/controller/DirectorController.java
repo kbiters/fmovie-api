@@ -25,7 +25,7 @@ public class DirectorController {
 
     @GetMapping("/{id}")
     public DirectorModel getDirector(@PathVariable Long id){
-        return this.directorService.getDirector(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+        return this.directorService.getDirector(id);
     }
 
     @PutMapping("/{id}")
