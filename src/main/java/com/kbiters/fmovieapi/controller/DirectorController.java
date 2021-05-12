@@ -33,8 +33,8 @@ public class DirectorController {
         return this.directorService.updateDirector(newDirector, id);
     }
 
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/{id}")
     public DirectorModel deleteDirector(@PathVariable Long id) {
-      return this.directorService.deleteDirector(id);
+        return this.directorService.deleteDirector(id);
     }
 }
