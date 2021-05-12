@@ -2,6 +2,7 @@ package com.kbiters.fmovieapi.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "movies")
@@ -40,16 +41,18 @@ public class MovieModel {
     @Column(nullable = false)
     private String genre;
 
+    @ManyToOne(targetEntity = DirectorModel.class)
     @Column(nullable = false)
-    private String director;
+    private DirectorModel director;
 
+    @ManyToMany(targetEntity = ActorModel.class, mappedBy = "movies", cascade = CascadeType.ALL)
     @Column(nullable = false)
-    private String actors;
+    private Set<ActorModel> actors;
 
     public MovieModel() {
     }
 
-    public MovieModel(Long id, String title, String overview, int rate, String trailer, String image, String language, int duration, Date releaseDate, boolean adult, String genre, String director, String actors) {
+    public MovieModel(Long id, String title, String overview, int rate, String trailer, String image, String language, int duration, Date releaseDate, boolean adult, String genre, DirectorModel director, Set<ActorModel> actors) {
         this.id = id;
         this.title = title;
         this.overview = overview;
@@ -153,19 +156,19 @@ public class MovieModel {
         this.genre = genre;
     }
 
-    public String getDirector() {
+    public DirectorModel getDirector() {
         return director;
     }
 
-    public void setDirector(String director) {
+    public void setDirector(DirectorModel director) {
         this.director = director;
     }
 
-    public String getActors() {
+    public Set<ActorModel> getActors() {
         return actors;
     }
 
-    public void setActors(String actors) {
+    public void setActors(Set<ActorModel> actors) {
         this.actors = actors;
     }
 }
