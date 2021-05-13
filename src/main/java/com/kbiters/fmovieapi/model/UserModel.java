@@ -1,21 +1,20 @@
 package com.kbiters.fmovieapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "users")
 public class UserModel {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String email;
     private String password;
 
-    public UserModel(){
+    public UserModel() {
     }
 
-    public UserModel(String email, String password){
+    public UserModel(String email, String password) {
         this.email = email;
         this.password = password;
     }

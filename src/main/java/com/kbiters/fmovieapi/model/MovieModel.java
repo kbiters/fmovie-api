@@ -1,11 +1,13 @@
 package com.kbiters.fmovieapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "movies")
+@Table(name = "movie")
 public class MovieModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +20,7 @@ public class MovieModel {
     private String overview;
 
     @Column(nullable = false)
-    private int rate;
+    private float rate;
 
     @Column(nullable = false)
     private String trailer;
@@ -41,18 +43,19 @@ public class MovieModel {
     @Column(nullable = false)
     private String genre;
 
-    @ManyToOne(targetEntity = DirectorModel.class)
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "director", nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_director"))
+    @JsonBackReference
     private DirectorModel director;
 
-    @ManyToMany(targetEntity = ActorModel.class, mappedBy = "movies", cascade = CascadeType.ALL)
+    @ManyToMany(targetEntity = ActorModel.class)
     @Column(nullable = false)
     private Set<ActorModel> actors;
 
     public MovieModel() {
     }
 
-    public MovieModel(Long id, String title, String overview, int rate, String trailer, String image, String language, int duration, Date releaseDate, boolean adult, String genre, DirectorModel director, Set<ActorModel> actors) {
+    public MovieModel(Long id, String title, String overview, float rate, String trailer, String image, String language, int duration, Date releaseDate, boolean adult, String genre, DirectorModel director, Set<ActorModel> actors) {
         this.id = id;
         this.title = title;
         this.overview = overview;
@@ -92,11 +95,11 @@ public class MovieModel {
         this.overview = overview;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 

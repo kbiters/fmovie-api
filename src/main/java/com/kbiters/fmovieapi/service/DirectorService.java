@@ -14,7 +14,7 @@ public class DirectorService {
     @Autowired
     DirectorRepository directorRepository;
 
-    
+
     public ArrayList<DirectorModel> getDirectors() {
         return (ArrayList<DirectorModel>) directorRepository.findAll();
     }
@@ -24,20 +24,20 @@ public class DirectorService {
     }
 
     public DirectorModel getDirector(Long id) {
-        return directorRepository.findById(id);
+        return directorRepository.findById(id).orElseThrow();
     }
 
     public DirectorModel updateDirector(DirectorModel newDirector, Long id) {
         return directorRepository.findById(id).map(director -> {
             director.setName(newDirector.getName());
             return directorRepository.save(director);
-        }).orElseGet(() ->{
+        }).orElseGet(() -> {
             newDirector.setId(id);
             return directorRepository.save(newDirector);
         });
     }
 
-    public DirectorModel deleteDirector(Long id) {
-        return directorRepository.deleteById(id);
+    public void deleteDirector(Long id) {
+        directorRepository.deleteById(id);
     }
 }

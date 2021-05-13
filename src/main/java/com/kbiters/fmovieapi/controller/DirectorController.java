@@ -20,21 +20,21 @@ public class DirectorController {
 
     @PostMapping()
     public DirectorModel saveMovie(@RequestBody DirectorModel director) {
-        return this.directorService.saveDirector(director);
+        return directorService.saveDirector(director);
     }
 
     @GetMapping("/{id}")
-    public DirectorModel getDirector(@PathVariable Long id){
-        return this.directorService.getDirector(id);
+    public DirectorModel getDirector(@PathVariable Long id) {
+        return directorService.getDirector(id);
     }
 
     @PutMapping("/{id}")
-    public DirectorModel updateDirector(@RequestBody DirectorModel newDirector, @PathVariable Long id){
-        return this.directorService.updateDirector(newDirector, id);
+    public DirectorModel updateDirector(@RequestBody DirectorModel newDirector, @PathVariable Long id) {
+        return directorService.updateDirector(newDirector, id);
     }
 
     @DeleteMapping("/{id}")
-    public DirectorModel deleteDirector(@PathVariable Long id) {
-        return this.directorService.deleteDirector(id);
+    public void deleteDirector(@PathVariable Long id) {
+        directorService.deleteDirector(id);
     }
 }

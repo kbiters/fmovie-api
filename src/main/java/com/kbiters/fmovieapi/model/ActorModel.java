@@ -5,7 +5,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "actors")
+@Table(name = "actor")
 public class ActorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,8 +13,8 @@ public class ActorModel {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany(targetEntity = MovieModel.class, mappedBy = "actors", cascade = CascadeType.ALL)
-    @Column()
+    @ManyToMany(targetEntity = MovieModel.class)
+    @Column
     private Set<MovieModel> movies;
 
     public ActorModel() {

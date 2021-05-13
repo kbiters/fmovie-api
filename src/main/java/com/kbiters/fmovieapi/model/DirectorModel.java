@@ -1,11 +1,14 @@
 package com.kbiters.fmovieapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
 
 @Entity
-@Table(name = "directors")
+@Table(name = "director")
 public class DirectorModel {
 
     @Id
@@ -15,9 +18,13 @@ public class DirectorModel {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(targetEntity = MovieModel.class, mappedBy = "director", cascade = CascadeType.ALL)
-    @Column()
+    @OneToMany(targetEntity = MovieModel.class, mappedBy = "director")
+    @Column
+    @JsonManagedReference
     private Set<MovieModel> movies;
+
+
+
 
     public DirectorModel() {
     }
@@ -51,4 +58,5 @@ public class DirectorModel {
     public void setMovies(Set<MovieModel> movies) {
         this.movies = movies;
     }
+
 }
