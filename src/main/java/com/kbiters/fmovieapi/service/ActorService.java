@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Service
 public class ActorService {
@@ -18,6 +17,10 @@ public class ActorService {
         return (ArrayList<ActorModel>) actorRepository.findAll();
     }
 
+    public ActorModel getActor(Long id) {
+        return actorRepository.findById(id).orElseThrow();
+    }
+
     public ActorModel saveActor(ActorModel actor) {
         return actorRepository.save(actor);
     }
@@ -27,20 +30,17 @@ public class ActorService {
         return actorRepository.findById(id).map(actor -> {
             actor.setName(newActor.getName());
             return actorRepository.save(actor);
-        }).orElseGet(() ->{
+        }).orElseGet(() -> {
             newActor.setId(id);
             return actorRepository.save(newActor);
         });
 
     }
 
-    public ActorModel getActor(Long id){
-        return actorRepository.findById(id).orElseThrow();
-    }
-
+    /*
     public ActorModel deleteActor(Long id){
-
         return actorRepository.deleteById(id);
     }
 
+     */
 }

@@ -12,8 +12,12 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public ArrayList<UserModel> getUser() {
+    public ArrayList<UserModel> getUsers() {
         return (ArrayList<UserModel>) this.userRepository.findAll();
+    }
+
+    public UserModel getUser(Long id) {
+        return userRepository.findById(id).orElseThrow();
     }
 
     public UserModel saveUser(UserModel user) {

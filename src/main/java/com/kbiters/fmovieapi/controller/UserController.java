@@ -14,8 +14,13 @@ public class UserController {
     UserService userService;
 
     @GetMapping()
-    public ArrayList<UserModel> getUser() {
-        return userService.getUser();
+    public ArrayList<UserModel> getUsers() {
+        return userService.getUsers();
+    }
+
+    @GetMapping("/{id}")
+    public UserModel getUser(@PathVariable Long id) {
+        return this.userService.getUser(id);
     }
 
     @PostMapping()

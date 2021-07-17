@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 
-
 @RestController
 @RequestMapping("/actors")
 class ActorController {
@@ -18,19 +17,18 @@ class ActorController {
 
 
     @GetMapping()
-    public ArrayList<ActorModel> getActor(){
+    public ArrayList<ActorModel> getActors(){
         return actorService.getActors();
     }
 
-    @PostMapping()
-    ActorModel newActors(@RequestBody ActorModel newActorModel){
-        return this.actorService.saveActor(newActorModel);
+    @GetMapping("/{id}")
+    public ActorModel getActor(@PathVariable Long id){
+        return actorService.getActor(id);
     }
 
-    @GetMapping("/{id}")
-    public ActorModel one(@PathVariable Long id){
-
-        return actorService.getActor(id);
+    @PostMapping()
+    public ActorModel newActors(@RequestBody ActorModel newActorModel){
+        return this.actorService.saveActor(newActorModel);
     }
 
     @PutMapping("/{id}")
@@ -39,11 +37,14 @@ class ActorController {
         return actorService.updateActor(newActor,id);
     }
 
+    /*
     @DeleteMapping("/{id}")
     public ActorModel deleteActor(@PathVariable Long id){
 
         return actorService.deleteActor(id);
     }
+
+     */
 
 }
 

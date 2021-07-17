@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/directors")
@@ -18,23 +19,25 @@ public class DirectorController {
         return directorService.getDirectors();
     }
 
-    @PostMapping()
-    public DirectorModel saveMovie(@RequestBody DirectorModel director) {
-        return this.directorService.saveDirector(director);
+    @GetMapping("/{id}")
+    public Optional<DirectorModel> getDirector(@PathVariable Long id){
+        return this.directorService.getDirector(id);
     }
 
-    @GetMapping("/{id}")
-    public DirectorModel getDirector(@PathVariable Long id){
-        return this.directorService.getDirector(id);
+    @PostMapping()
+    public DirectorModel saveDirector(@RequestBody DirectorModel director) {
+        return this.directorService.saveDirector(director);
     }
 
     @PutMapping("/{id}")
     public DirectorModel updateDirector(@RequestBody DirectorModel newDirector, @PathVariable Long id){
         return this.directorService.updateDirector(newDirector, id);
     }
-
+    /*
     @DeleteMapping("/{id}")
     public DirectorModel deleteDirector(@PathVariable Long id) {
         return this.directorService.deleteDirector(id);
     }
+
+     */
 }

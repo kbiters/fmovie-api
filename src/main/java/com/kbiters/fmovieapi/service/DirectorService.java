@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class DirectorService {
@@ -23,7 +24,7 @@ public class DirectorService {
         return directorRepository.save(director);
     }
 
-    public DirectorModel getDirector(Long id) {
+    public Optional<DirectorModel> getDirector(Long id) {
         return directorRepository.findById(id);
     }
 
@@ -36,8 +37,10 @@ public class DirectorService {
             return directorRepository.save(newDirector);
         });
     }
-
+    /*
     public DirectorModel deleteDirector(Long id) {
         return directorRepository.deleteById(id);
     }
+
+     */
 }

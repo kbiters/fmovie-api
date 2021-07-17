@@ -15,7 +15,12 @@ public class MovieController {
 
     @GetMapping()
     public ArrayList<MovieModel> getMovies() {
-        return movieService.getMovies();
+        return this.movieService.getMovies();
+    }
+
+    @GetMapping("/{id}")
+    public MovieModel getMovie(@PathVariable Long id) {
+        return this.movieService.getMovie(id);
     }
 
     @PostMapping()

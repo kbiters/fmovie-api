@@ -16,6 +16,10 @@ public class MovieService {
         return (ArrayList<MovieModel>) this.movieRepository.findAll();
     }
 
+    public MovieModel getMovie(Long id) {
+        return movieRepository.findById(id).orElseThrow();
+    }
+
     public MovieModel saveMovie(MovieModel movie) {
         return this.movieRepository.save(movie);
     }
