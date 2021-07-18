@@ -2,14 +2,16 @@ package com.kbiters.fmovieapi.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "movies")
 public class MovieModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long movieID;
 
     @Column(nullable = false)
     private String title;
@@ -41,19 +43,33 @@ public class MovieModel {
     @Column(nullable = false)
     private String genre;
 
-    @ManyToOne(targetEntity = DirectorModel.class)
-    @Column(nullable = false)
-    private DirectorModel director;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "movie_director",
+            joinColumns = {@JoinColumn(name = "movieID")},
+            inverseJoinColumns = {@JoinColumn(name = "directorID")}
+    )
+    private Set<DirectorModel> directors = new HashSet<>();
 
-    @ManyToMany(targetEntity = ActorModel.class, mappedBy = "movies", cascade = CascadeType.ALL)
-    @Column(nullable = false)
-    private Set<ActorModel> actors;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "movie_actor",
+            joinColumns = {@JoinColumn(name = "movieID")},
+            inverseJoinColumns = {@JoinColumn(name = "actorID")}
+    )
+    private Set<ActorModel> actors = new HashSet<>();
+
 
     public MovieModel() {
     }
 
-    public MovieModel(Long id, String title, String overview, int rate, String trailer, String image, String language, int duration, Date releaseDate, boolean adult, String genre, DirectorModel director, Set<ActorModel> actors) {
-        this.id = id;
+    public MovieModel(Long movieID, String title, String overview, int rate,
+                      String trailer, String image, String language, int duration,
+                      Date releaseDate, boolean adult, String genre,
+                      Set<DirectorModel> directors, Set<ActorModel> actors) {
+
+        this.movieID = movieID;
         this.title = title;
         this.overview = overview;
         this.rate = rate;
@@ -64,16 +80,17 @@ public class MovieModel {
         this.releaseDate = releaseDate;
         this.adult = adult;
         this.genre = genre;
-        this.director = director;
+        this.directors = directors;
         this.actors = actors;
+
     }
 
     public Long getId() {
-        return id;
+        return movieID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long movieID) {
+        this.movieID = movieID;
     }
 
     public String getTitle() {
@@ -156,12 +173,13 @@ public class MovieModel {
         this.genre = genre;
     }
 
-    public DirectorModel getDirector() {
-        return director;
+
+    public Set<DirectorModel> getDirectors() {
+        return directors;
     }
 
-    public void setDirector(DirectorModel director) {
-        this.director = director;
+    public void setDirectors(Set<DirectorModel> directors) {
+        this.directors = directors;
     }
 
     public Set<ActorModel> getActors() {
