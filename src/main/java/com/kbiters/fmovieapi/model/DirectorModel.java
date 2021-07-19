@@ -1,7 +1,6 @@
 package com.kbiters.fmovieapi.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @Entity
@@ -10,30 +9,26 @@ public class DirectorModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long directorID;
 
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(targetEntity = MovieModel.class, mappedBy = "director", cascade = CascadeType.ALL)
-    @Column()
-    private Set<MovieModel> movies;
 
     public DirectorModel() {
     }
 
-    public DirectorModel(Long id, String name, Set<MovieModel> movies) {
-        this.id = id;
+    public DirectorModel(Long directorID, String name) {
+        this.directorID = directorID;
         this.name = name;
-        this.movies = movies;
     }
 
     public Long getId() {
-        return id;
+        return directorID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long directorID) {
+        this.directorID = directorID;
     }
 
     public String getName() {
@@ -44,11 +39,4 @@ public class DirectorModel {
         this.name = name;
     }
 
-    public Set<MovieModel> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Set<MovieModel> movies) {
-        this.movies = movies;
-    }
 }
