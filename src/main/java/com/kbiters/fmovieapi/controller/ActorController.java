@@ -15,7 +15,6 @@ class ActorController {
     @Autowired
     ActorService actorService;
 
-
     @GetMapping()
     public ArrayList<ActorModel> getActors() {
         return actorService.getActors();
@@ -33,7 +32,6 @@ class ActorController {
 
     @PutMapping("/{id}")
     public ActorModel updateActor(@RequestBody ActorModel newActor, @PathVariable Long id) {
-
         return actorService.updateActor(newActor, id);
     }
 
