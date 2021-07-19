@@ -9,11 +9,12 @@ import java.util.ArrayList;
 
 @Service
 public class MovieService {
+
     @Autowired
     MovieRepository movieRepository;
 
     public ArrayList<MovieModel> getMovies() {
-        return (ArrayList<MovieModel>) this.movieRepository.findAll();
+        return (ArrayList<MovieModel>) movieRepository.findAll();
     }
 
     public MovieModel getMovie(Long id) {
@@ -21,6 +22,6 @@ public class MovieService {
     }
 
     public MovieModel saveMovie(MovieModel movie) {
-        return this.movieRepository.save(movie);
+        return movieRepository.save(movie);
     }
 }

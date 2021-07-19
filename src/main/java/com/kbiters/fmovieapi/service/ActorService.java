@@ -34,13 +34,10 @@ public class ActorService {
             newActor.setId(id);
             return actorRepository.save(newActor);
         });
-
     }
 
-    /*
-    public ActorModel deleteActor(Long id){
-        return actorRepository.deleteById(id);
+    public void deleteActor(Long id){
+        actorRepository.deleteById(id);
     }
 
-     */
 }

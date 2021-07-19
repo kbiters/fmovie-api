@@ -9,5 +9,4 @@ public class FmovieApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(FmovieApiApplication.class, args);
     }
-
 }
