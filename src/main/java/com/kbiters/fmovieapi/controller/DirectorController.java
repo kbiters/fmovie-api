@@ -21,23 +21,21 @@ public class DirectorController {
 
     @GetMapping("/{id}")
     public Optional<DirectorModel> getDirector(@PathVariable Long id){
-        return this.directorService.getDirector(id);
+        return directorService.getDirector(id);
     }
 
     @PostMapping()
     public DirectorModel saveDirector(@RequestBody DirectorModel director) {
-        return this.directorService.saveDirector(director);
+        return directorService.saveDirector(director);
     }
 
     @PutMapping("/{id}")
     public DirectorModel updateDirector(@RequestBody DirectorModel newDirector, @PathVariable Long id){
-        return this.directorService.updateDirector(newDirector, id);
-    }
-    /*
-    @DeleteMapping("/{id}")
-    public DirectorModel deleteDirector(@PathVariable Long id) {
-        return this.directorService.deleteDirector(id);
+        return directorService.updateDirector(newDirector, id);
     }
 
-     */
+    @DeleteMapping("/{id}")
+    public void deleteDirector(@PathVariable Long id) {
+        directorService.deleteDirector(id);
+    }
 }

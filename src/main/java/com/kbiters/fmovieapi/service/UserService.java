@@ -13,7 +13,7 @@ public class UserService {
     UserRepository userRepository;
 
     public ArrayList<UserModel> getUsers() {
-        return (ArrayList<UserModel>) this.userRepository.findAll();
+        return (ArrayList<UserModel>) userRepository.findAll();
     }
 
     public UserModel getUser(Long id) {
@@ -21,6 +21,6 @@ public class UserService {
     }
 
     public UserModel saveUser(UserModel user) {
-        return this.userRepository.save(user);
+        return userRepository.save(user);
     }
 }

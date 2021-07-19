@@ -20,12 +20,12 @@ public class DirectorService {
         return (ArrayList<DirectorModel>) directorRepository.findAll();
     }
 
-    public DirectorModel saveDirector(DirectorModel director) {
-        return directorRepository.save(director);
-    }
-
     public Optional<DirectorModel> getDirector(Long id) {
         return directorRepository.findById(id);
+    }
+
+    public DirectorModel saveDirector(DirectorModel director) {
+        return directorRepository.save(director);
     }
 
     public DirectorModel updateDirector(DirectorModel newDirector, Long id) {
@@ -37,10 +37,8 @@ public class DirectorService {
             return directorRepository.save(newDirector);
         });
     }
-    /*
-    public DirectorModel deleteDirector(Long id) {
-        return directorRepository.deleteById(id);
-    }
 
-     */
+    public void deleteDirector(Long id) {
+        directorRepository.deleteById(id);
+    }
 }

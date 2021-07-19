@@ -10,6 +10,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/users")
 public class UserController {
+
     @Autowired
     UserService userService;
 
@@ -20,12 +21,12 @@ public class UserController {
 
     @GetMapping("/{id}")
     public UserModel getUser(@PathVariable Long id) {
-        return this.userService.getUser(id);
+        return userService.getUser(id);
     }
 
     @PostMapping()
     public UserModel saveUser(@RequestBody UserModel user) {
-        return this.userService.saveUser(user);
+        return userService.saveUser(user);
     }
 
 }

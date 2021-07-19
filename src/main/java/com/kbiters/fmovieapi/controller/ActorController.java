@@ -17,34 +17,30 @@ class ActorController {
 
 
     @GetMapping()
-    public ArrayList<ActorModel> getActors(){
+    public ArrayList<ActorModel> getActors() {
         return actorService.getActors();
     }
 
     @GetMapping("/{id}")
-    public ActorModel getActor(@PathVariable Long id){
+    public ActorModel getActor(@PathVariable Long id) {
         return actorService.getActor(id);
     }
 
     @PostMapping()
-    public ActorModel newActors(@RequestBody ActorModel newActorModel){
-        return this.actorService.saveActor(newActorModel);
+    public ActorModel newActors(@RequestBody ActorModel newActorModel) {
+        return actorService.saveActor(newActorModel);
     }
 
     @PutMapping("/{id}")
     public ActorModel updateActor(@RequestBody ActorModel newActor, @PathVariable Long id) {
 
-        return actorService.updateActor(newActor,id);
+        return actorService.updateActor(newActor, id);
     }
 
-    /*
     @DeleteMapping("/{id}")
-    public ActorModel deleteActor(@PathVariable Long id){
-
-        return actorService.deleteActor(id);
+    public void deleteActor(@PathVariable Long id) {
+        actorService.deleteActor(id);
     }
-
-     */
 
 }
 
