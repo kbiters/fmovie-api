@@ -1,5 +1,6 @@
 package com.kbiters.fmovieapi.service;
 
+import com.kbiters.fmovieapi.model.ActorModel;
 import com.kbiters.fmovieapi.model.UserModel;
 import com.kbiters.fmovieapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,21 @@ public class UserService {
 
     public UserModel saveUser(UserModel user) {
         return userRepository.save(user);
+    }
+
+    public UserModel updateUser(UserModel newUser, Long id) {
+
+        return userRepository.findById(id).map(user -> {
+            user.setEmail(newUser.getEmail());
+            user.setPassword(newUser.getPassword());
+            return userRepository.save(user);
+        }).orElseGet(() -> {
+            newUser.setId(id);
+            return userRepository.save(newUser);
+        });
+    }
+
+    public void deleteUser(Long id){
+        userRepository.deleteById(id);
     }
 }

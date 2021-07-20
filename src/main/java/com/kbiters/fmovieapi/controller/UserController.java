@@ -1,5 +1,6 @@
 package com.kbiters.fmovieapi.controller;
 
+import com.kbiters.fmovieapi.model.ActorModel;
 import com.kbiters.fmovieapi.model.UserModel;
 import com.kbiters.fmovieapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,14 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+    @PutMapping("/{id}")
+    public UserModel updateUser(@RequestBody UserModel newUser, @PathVariable Long id) {
+        return userService.updateUser(newUser, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+    }
 }
+
