@@ -1,43 +1,44 @@
 package com.kbiters.fmovieapi.controller;
 
-import com.kbiters.fmovieapi.model.ActorModel;
 import com.kbiters.fmovieapi.model.UserModel;
-import com.kbiters.fmovieapi.service.UserService;
+import com.kbiters.fmovieapi.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
     @Autowired
-    UserService userService;
+    IUserService userService;
 
     @GetMapping()
-    public ArrayList<UserModel> getUsers() {
-        return userService.getUsers();
+    public ResponseEntity<List<UserModel>> getUsers() {
+        return userService.getAll();
     }
 
     @GetMapping("/{id}")
-    public UserModel getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+    public ResponseEntity<UserModel> getUser(@PathVariable Long id) {
+        return userService.getOne(id);
     }
 
     @PostMapping()
-    public UserModel saveUser(@RequestBody UserModel user) {
-        return userService.saveUser(user);
+    public ResponseEntity<UserModel> saveUser(@RequestBody UserModel user) {
+        return userService.create(user);
     }
 
-    @PutMapping("/{id}")
-    public UserModel updateUser(@RequestBody UserModel newUser, @PathVariable Long id) {
-        return userService.updateUser(newUser, id);
+    @PutMapping()
+    public ResponseEntity<UserModel> updateUser(@RequestBody UserModel user) {
+        return userService.update(user);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
+        return userService.delete(id);
     }
 }
 
