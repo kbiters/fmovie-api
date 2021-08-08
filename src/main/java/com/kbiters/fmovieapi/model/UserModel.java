@@ -1,6 +1,8 @@
 package com.kbiters.fmovieapi.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -16,12 +18,21 @@ public class UserModel {
     @Column(nullable = false)
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_movie",
+            joinColumns = {@JoinColumn(name = "userID")},
+            inverseJoinColumns = {@JoinColumn(name = "movieID")}
+    )
+    private Set<MovieModel> playlist = new HashSet<>();
+
     public UserModel() {
     }
 
-    public UserModel(String email, String password) {
+    public UserModel(String email, String password, Set<MovieModel> playlist ) {
         this.email = email;
         this.password = password;
+        this.playlist = playlist;
     }
 
     public Long getId() {
@@ -46,5 +57,13 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<MovieModel> getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Set<MovieModel> playlist) {
+        this.playlist = playlist;
     }
 }
