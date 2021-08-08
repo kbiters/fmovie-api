@@ -1,11 +1,13 @@
 package com.kbiters.fmovieapi.controller;
 
 import com.kbiters.fmovieapi.model.ActorModel;
-import com.kbiters.fmovieapi.service.ActorService;
+import com.kbiters.fmovieapi.service.IActorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -13,31 +15,31 @@ import java.util.ArrayList;
 class ActorController {
 
     @Autowired
-    ActorService actorService;
+    IActorService actorService;
 
     @GetMapping()
-    public ArrayList<ActorModel> getActors() {
-        return actorService.getActors();
+    public ResponseEntity<List<ActorModel>> getActors() {
+        return actorService.getAll();
     }
 
     @GetMapping("/{id}")
-    public ActorModel getActor(@PathVariable Long id) {
-        return actorService.getActor(id);
+    public ResponseEntity<ActorModel> getActor(@PathVariable Long id) {
+        return actorService.getOne(id);
     }
 
     @PostMapping()
-    public ActorModel newActors(@RequestBody ActorModel newActorModel) {
-        return actorService.saveActor(newActorModel);
+    public ResponseEntity<ActorModel> newActors(@RequestBody ActorModel actor) {
+        return actorService.create(actor);
     }
 
-    @PutMapping("/{id}")
-    public ActorModel updateActor(@RequestBody ActorModel newActor, @PathVariable Long id) {
-        return actorService.updateActor(newActor, id);
+    @PutMapping()
+    public ResponseEntity<ActorModel> updateActor(@RequestBody ActorModel actor) {
+        return actorService.update(actor);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteActor(@PathVariable Long id) {
-        actorService.deleteActor(id);
+    public ResponseEntity<HttpStatus> deleteActor(@PathVariable Long id) {
+        return actorService.delete(id);
     }
 
 }

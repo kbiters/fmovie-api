@@ -1,43 +1,21 @@
 package com.kbiters.fmovieapi.service;
 
+import com.kbiters.fmovieapi.common.GenericService;
 import com.kbiters.fmovieapi.model.ActorModel;
 import com.kbiters.fmovieapi.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
-public class ActorService {
+public class ActorService extends GenericService<ActorModel> implements IActorService {
 
     @Autowired
     ActorRepository actorRepository;
 
-    public ArrayList<ActorModel> getActors() {
-        return (ArrayList<ActorModel>) actorRepository.findAll();
+
+    @Override
+    public JpaRepository<ActorModel, Long> getRepository() {
+        return actorRepository;
     }
-
-    public ActorModel getActor(Long id) {
-        return actorRepository.findById(id).orElseThrow();
-    }
-
-    public ActorModel saveActor(ActorModel actor) {
-        return actorRepository.save(actor);
-    }
-
-    public ActorModel updateActor(ActorModel newActor, Long id) {
-
-        return actorRepository.findById(id).map(actor -> {
-            actor.setName(newActor.getName());
-            return actorRepository.save(actor);
-        }).orElseGet(() -> {
-            newActor.setId(id);
-            return actorRepository.save(newActor);
-        });
-    }
-
-    public void deleteActor(Long id){
-        actorRepository.deleteById(id);
-    }
-
 }

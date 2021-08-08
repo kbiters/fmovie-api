@@ -1,43 +1,44 @@
 package com.kbiters.fmovieapi.controller;
 
 import com.kbiters.fmovieapi.model.MovieModel;
-import com.kbiters.fmovieapi.model.UserModel;
-import com.kbiters.fmovieapi.service.MovieService;
+import com.kbiters.fmovieapi.service.IMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
 
     @Autowired
-    MovieService movieService;
+    IMovieService movieService;
 
     @GetMapping()
-    public ArrayList<MovieModel> getMovies() {
-        return movieService.getMovies();
+    public ResponseEntity<List<MovieModel>> getMovies() {
+        return movieService.getAll();
     }
 
     @GetMapping("/{id}")
-    public MovieModel getMovie(@PathVariable Long id) {
-        return movieService.getMovie(id);
+    public ResponseEntity<MovieModel> getMovie(@PathVariable Long id) {
+        return movieService.getOne(id);
     }
 
     @PostMapping()
-    public MovieModel saveMovie(@RequestBody MovieModel movie) {
-        return movieService.saveMovie(movie);
+    public ResponseEntity<MovieModel> saveMovie(@RequestBody MovieModel movie) {
+        return movieService.create(movie);
     }
 
-    @PutMapping("/{id}")
-    public MovieModel updateMovie(@RequestBody MovieModel newMovie, @PathVariable Long id) {
-        return movieService.updateMovie(newMovie, id);
+    @PutMapping()
+    public ResponseEntity<MovieModel> updateMovie(@RequestBody MovieModel movie) {
+        return movieService.create(movie);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteMovie(@PathVariable Long id) {
-        movieService.deleteMovie(id);
+    public ResponseEntity<HttpStatus> deleteMovie(@PathVariable Long id) {
+        return movieService.delete(id);
     }
 
 }

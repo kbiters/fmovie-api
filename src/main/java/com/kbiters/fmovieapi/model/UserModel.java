@@ -12,7 +12,7 @@ public class UserModel {
     @GeneratedValue
     private Long userID;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(String email, String password, Set<MovieModel> playlist ) {
+    public UserModel(String email, String password, Set<MovieModel> playlist) {
         this.email = email;
         this.password = password;
         this.playlist = playlist;

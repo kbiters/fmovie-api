@@ -1,41 +1,43 @@
 package com.kbiters.fmovieapi.controller;
 
 import com.kbiters.fmovieapi.model.DirectorModel;
-import com.kbiters.fmovieapi.service.DirectorService;
+import com.kbiters.fmovieapi.service.IDirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/directors")
 public class DirectorController {
+
     @Autowired
-    DirectorService directorService;
+    IDirectorService directorService;
 
     @GetMapping()
-    public ArrayList<DirectorModel> getDirectors() {
-        return directorService.getDirectors();
+    public ResponseEntity<List<DirectorModel>> getDirectors() {
+        return directorService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<DirectorModel> getDirector(@PathVariable Long id){
-        return directorService.getDirector(id);
+    public ResponseEntity<DirectorModel> getDirector(@PathVariable Long id){
+        return directorService.getOne(id);
     }
 
     @PostMapping()
-    public DirectorModel saveDirector(@RequestBody DirectorModel director) {
-        return directorService.saveDirector(director);
+    public ResponseEntity<DirectorModel> saveDirector(@RequestBody DirectorModel director) {
+        return directorService.create(director);
     }
 
-    @PutMapping("/{id}")
-    public DirectorModel updateDirector(@RequestBody DirectorModel newDirector, @PathVariable Long id){
-        return directorService.updateDirector(newDirector, id);
+    @PutMapping()
+    public ResponseEntity<DirectorModel> updateDirector(@RequestBody DirectorModel director){
+        return directorService.update(director);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteDirector(@PathVariable Long id) {
-        directorService.deleteDirector(id);
+    public ResponseEntity<HttpStatus> deleteDirector(@PathVariable Long id) {
+        return directorService.delete(id);
     }
 }
