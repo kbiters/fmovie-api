@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/directors")
+@CrossOrigin(origins = "*")
 public class DirectorController {
 
     @Autowired

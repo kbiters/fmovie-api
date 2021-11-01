@@ -20,7 +20,7 @@ public class MovieModel {
     private String overview;
 
     @Column(nullable = false)
-    private int rate;
+    private float rate;
 
     @Column(nullable = false)
     private String trailer;
@@ -64,7 +64,7 @@ public class MovieModel {
     public MovieModel() {
     }
 
-    public MovieModel(Long movieID, String title, String overview, int rate,
+    public MovieModel(Long movieID, String title, String overview, float rate,
                       String trailer, String image, String language, int duration,
                       Date releaseDate, boolean adult, String genre,
                       Set<DirectorModel> directors, Set<ActorModel> actors) {
@@ -109,11 +109,11 @@ public class MovieModel {
         this.overview = overview;
     }
 
-    public int getRate() {
+    public float getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(float rate) {
         this.rate = rate;
     }
 

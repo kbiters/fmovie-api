@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/actors")
+@CrossOrigin(origins = "*")
 class ActorController {
 
     @Autowired
