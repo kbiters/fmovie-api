@@ -14,20 +14,24 @@ public class DirectorModel {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String lastName;
+
 
     public DirectorModel() {
     }
 
-    public DirectorModel(Long directorID, String name) {
+    public DirectorModel(Long directorID, String name, String lastName) {
         this.directorID = directorID;
         this.name = name;
+        this.lastName = lastName;
     }
 
-    public Long getId() {
+    public Long getDirectorID() {
         return directorID;
     }
 
-    public void setId(Long directorID) {
+    public void setDirectorID(Long directorID) {
         this.directorID = directorID;
     }
 
@@ -39,4 +43,11 @@ public class DirectorModel {
         this.name = name;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

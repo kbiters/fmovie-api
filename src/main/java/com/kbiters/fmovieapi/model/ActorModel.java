@@ -14,19 +14,23 @@ public class ActorModel {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String lastName;
+
     public ActorModel() {
     }
 
-    public ActorModel(Long actorID, String name) {
+    public ActorModel(Long actorID, String name, String lastName) {
         this.actorID = actorID;
         this.name = name;
+        this.lastName = lastName;
     }
 
-    public Long getId() {
+    public Long getActorID() {
         return actorID;
     }
 
-    public void setId(Long actorID) {
+    public void setActorID(Long actorID) {
         this.actorID = actorID;
     }
 
@@ -36,5 +40,13 @@ public class ActorModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
